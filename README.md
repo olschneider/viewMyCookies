@@ -11,5 +11,7 @@ Usage:
 To Do:
 - Filter with a regex in the search button
 - Find and decode all encoded fields (eg base64)
+- Add delete function (all cookies from a domain and a unique cookie)
 - Better look
+- Install all storage for security informations
 
