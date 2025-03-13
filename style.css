@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+.cookie-list {
+    list-style-type: none;
+    padding: 0;
+}
+.cookie-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+.search-bar {
+    margin-bottom: 20px;
+}
+.domain-section {
+    margin-bottom: 10px;
+}
+.domain-header {
+    cursor: pointer;
+    font-weight: bold;
+}
+.cookie-list {
+    display: none;
+    margin-left: 20px;
+}
+.cookie-button {
+    display: block;
+    margin: 5px 0;
+}
+.extra-info {
+    display: none;
+    margin-top: 5px;
+    font-size: 0.9em;
+}
