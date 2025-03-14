@@ -7,14 +7,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
 let cookies = [];
 
-function decodeBase64(base64String) {
-    try {
-        return decodeURIComponent(atob(base64String).split('').map(function(c) {
-            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-        }).join(''));
-    } catch (e) {
-        return base64String; // Retourne la chaîne originale si le décodage échoue
+function decodeBase64(input) {
+    const base64Regex = /[A-Za-z0-9+/]{4,}(={0,2})?/g;
+    let matches = input.match(base64Regex);
+
+    if (!matches) {
+        return input;
     }
+
+    matches = matches.filter(match => {
+        const len = match.length;
+        const paddingLen = match.endsWith('=') ? match.split('').reverse().findIndex(char => char !== '=') : 0;
+        if (paddingLen === 0)
+        {
+            console.log("String "+match+" possible base 64 but not converted")
+        }
+        return len % 4 === 0 && len >= 4 && ( paddingLen === 1 || paddingLen === 2);
+    });
+
+    matches.forEach(match => {
+        try {
+            // Décode la chaîne Base64
+            const decodedString = atob(match);
+            // Remplace la chaîne encodée par la chaîne décodée dans l'input
+            input = input.replace(match, decodedString);
+        } catch (e) {
+            // Si le décodage échoue, on ignore cette sous-chaîne
+            console.log("Error in base64 decoding "+match)
+        }
+    });
+
+    return input;
 }
 
 // Fonction pour afficher les cookies
